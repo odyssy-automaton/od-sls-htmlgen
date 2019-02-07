@@ -8,29 +8,32 @@ exports.handler = function(event, context, cb) {
 	process.env['PATH'] = process.env['PATH'] + ':' + process.env['LAMBDA_TASK_ROOT'];
 
 	const outputName = event.outputName;
-	const name = event.name || '';
-	const primaryColor = event.primaryColor || '#fff';
-	const secondaryColor = event.secondaryColor || '#000';
-	const tertiaryColor = event.tertiaryColor || '#666';
+	const templateVars = event.templateVars;
 	var templatePath = path.join(__dirname, 'template.html');
 
 	var html = fs.readFileSync(templatePath,'utf8')
-  console.log(html);
 	
-	html = html.replace(/\{\{name}}/g, name);
-	html = html.replace(/\{\{primaryColor}}/g, primaryColor);
-	html = html.replace(/\{\{secondaryColor}}/g, secondaryColor);
-	html = html.replace(/\{\{tertiaryColor}}/g, tertiaryColor);
+	if(!Array.isArray(templateVars)){
+		cb(`422, please provide an array of Template Variables (templateVars)`);
+		return false;
+	}	
+	
+	for (var i = 0; i < templateVars.length; i++) {
+		var re = new RegExp(`\\{\\{${templateVars[i].name}}}`,"g");
+		console.log(re);
+		
+		html = html.replace(re, templateVars[i].value);
+	}
+	
 	html = html.replace(/\r?\n|\r/g, ' ');
-  console.log('after proc');
-  console.log(html);
-
+    console.log('after proc');
+    console.log(html);
 
 	const targetBucket = process.env['BUCKET'];
 
 	const targetFilename = `${outputName}.html`;
 
-			// upload the file
+	// upload the file
 	const s3 = new AWS.S3();
 	params = {
 		ACL: 'public-read',
