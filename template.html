@@ -1,53 +1,76 @@
 <html>
-    <style>
-    svg {
-      position: absolute;
+   <style>
+   svg {
+     position: absolute;
+   }
+   svg .Primary {
+     fill: {{primaryColor}}
+   }
+   svg .Secondary {
+      fill: {{secondaryColor}};
     }
-    svg .Primary {
-      fill: {{primaryColor}};
-    }
-    svg .Secondary {
-       fill: {{secondaryColor}};
-     }
-    svg .Shade {
-      fill: #000;
-      fill-opacity: .15;
-    }
+   svg .Shade {
+     fill: #000;
+     fill-opacity: .15;
+   }
 
-    #generation-bar {
-      position: absolute;
-      bottom: 5px;
-      left: 5px;
-      width: 30px;
-      height: 100px;
-    }
+   svg.lightning {
+       position: relative;
+       width: 24px;
+   }
 
-    #generation-bar > div {
-      width: 25px;
-      height: 10px;
-      margin: 3px;
-      background-color: {{secondaryColor}};
-      opacity: .5;
-    }
+   svg.lightning.poweredUp .powerStroke {
+     fill: black;
+   }
 
-    #generation-bar > div:nth-last-child(-n+{{generation}})  {
-      background-color:  {{secondaryColor}};
-      opacity: 1;
-    }
-    </style>
-    <body>
-        <div id="generation-bar">
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
-        <div id="surface"></div>
-    </body>
+   #generation-bar {
+     position: absolute;
+     bottom: 25px;
+     right: 25px;
+     width: 50px;
+     height: auto;
+     text-align: center;
+   }
+
+   #generation-bar > div {
+     width: 50px;
+     height: 10px;
+     margin: 6px 0px;
+     background-color: transparent;
+     border: 2px solid black;
+   }
+
+   #generation-bar > div:nth-last-child(-n+{{generation}})  {
+     background-color: black;
+   }
+   </style>
+   <body>
+       <div id="generation-bar">
+         <svg class="lightning poweredUp" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.71 57.82">
+            <defs>
+                <style>
+                .powerStroke {
+                    fill: none;
+                    stroke: #000;
+                    stroke-linejoin: round;
+                    stroke-width: 2px;
+                }
+                </style>
+            </defs>
+            <title>Gittron__Power--Lightning</title>
+            <polygon class="powerStroke" points="13.27 52.74 13.27 33.96 2.83 33.96 17.83 4.74 17.83 23.52 27.88 23.52 13.27 52.74"/>
+         </svg>
+         <div></div>
+         <div></div>
+         <div></div>
+         <div></div>
+         <div></div>
+         <div></div>
+         <div></div>
+         <div></div>
+         <div></div>
+         <div></div>
+       </div>
+       <div id="surface"></div>
+   </body>
 </html>
