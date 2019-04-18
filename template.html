@@ -13,8 +13,41 @@
       fill: #000;
       fill-opacity: .15;
     }
+
+    #generation-bar {
+      position: absolute;
+      bottom: 5px;
+      left: 5px;
+      width: 30px;
+      height: 100px;
+    }
+
+    #generation-bar > div {
+      width: 25px;
+      height: 10px;
+      margin: 3px;
+      background-color: {{secondaryColor}};
+      opacity: .5;
+    }
+
+    #generation-bar > div:nth-last-child(-n+{{generation}})  {
+      background-color:  {{secondaryColor}};
+      opacity: 1;
+    }
     </style>
     <body>
+        <div id="generation-bar">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
         <div id="surface"></div>
     </body>
 </html>
