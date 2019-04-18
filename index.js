@@ -18,6 +18,15 @@ exports.handler = function(event, context, cb) {
 		return false;
 	}	
 	
+	// example
+	// {
+	//	"outputName": "testbar",
+	// 	"templateVars": [
+	// 		{"name":"primaryColor", "value": "#CCC"},
+	// 		{"name": "secondaryColor", "value": "#CCC"},
+	// 		{"name": "generation", "value": 3}
+	// 		]
+	//   }
 	for (var i = 0; i < templateVars.length; i++) {
 		var re = new RegExp(`\\{\\{${templateVars[i].name}}}`,"g");
 		console.log(re);

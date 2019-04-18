@@ -1,4 +1,4 @@
-service: od-sls-htmlgen-dev
+service: od-sls-htmlgen
 
 frameworkVersion: ">=1.1.0"
 
